@@ -55,6 +55,10 @@ class DestinationMappingUtils (
             return DestinationStyleType.BottomSheet
         }
 
+        if (blockedBottomSheetStyle != null && blockedBottomSheetStyle!!.isAssignableFrom(ksStyleType)) {
+            return DestinationStyleType.BlockedBottomSheet
+        }
+
         val importable = ksStyleType.findActualClassDeclaration()?.toImportable()
             ?: throw IllegalDestinationsSetup("Parameter $DESTINATION_ANNOTATION_STYLE_ARGUMENT of Destination annotation in $locationError was not resolvable: please review it.")
 
@@ -76,6 +80,10 @@ class DestinationMappingUtils (
 
     private val bottomSheetStyle by lazy {
         resolver.getClassDeclarationByName("$CORE_PACKAGE_NAME.bottomsheet.spec.DestinationStyleBottomSheet")?.asType(emptyList())
+    }
+
+    private val blockedBottomSheetStyle by lazy {
+        resolver.getClassDeclarationByName("$CORE_PACKAGE_NAME.bottomsheet.spec.DestinationStyleBlockedBottomSheet")?.asType(emptyList())
     }
 
     private val animatedStyle by lazy {

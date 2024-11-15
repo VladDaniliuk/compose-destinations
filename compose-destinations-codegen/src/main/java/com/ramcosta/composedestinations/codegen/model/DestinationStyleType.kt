@@ -1,5 +1,6 @@
 package com.ramcosta.composedestinations.codegen.model
 
+import com.ramcosta.composedestinations.codegen.commons.CORE_BLOCKED_BOTTOM_SHEET_DESTINATION_STYLE
 import com.ramcosta.composedestinations.codegen.commons.CORE_BOTTOM_SHEET_DESTINATION_STYLE
 import com.ramcosta.composedestinations.codegen.commons.CORE_PACKAGE_NAME
 import com.ramcosta.composedestinations.codegen.writers.helpers.ImportableHelper
@@ -25,6 +26,17 @@ sealed class DestinationStyleType {
             val bottomSheetImportable = Importable(
                 CORE_BOTTOM_SHEET_DESTINATION_STYLE,
                 "$CORE_PACKAGE_NAME.bottomsheet.spec.$CORE_BOTTOM_SHEET_DESTINATION_STYLE",
+            )
+
+            return importableHelper.addAndGetPlaceholder(bottomSheetImportable)
+        }
+    }
+
+    data object BlockedBottomSheet : DestinationStyleType() {
+        override fun code(importableHelper: ImportableHelper): String {
+            val bottomSheetImportable = Importable(
+                CORE_BLOCKED_BOTTOM_SHEET_DESTINATION_STYLE,
+                "$CORE_PACKAGE_NAME.bottomsheet.spec.$CORE_BLOCKED_BOTTOM_SHEET_DESTINATION_STYLE",
             )
 
             return importableHelper.addAndGetPlaceholder(bottomSheetImportable)

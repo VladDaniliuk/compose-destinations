@@ -82,6 +82,7 @@ val CORE_STRING_ARRAY_LIST_NAV_TYPE = Importable("stringArrayListNavType", "$COR
 const val CORE_DIRECTION = "Direction"
 const val CORE_DESTINATION_ANIMATION_STYLE = "DestinationStyle.Animated"
 const val CORE_BOTTOM_SHEET_DESTINATION_STYLE = "DestinationStyleBottomSheet"
+const val CORE_BLOCKED_BOTTOM_SHEET_DESTINATION_STYLE = "DestinationStyleBlockedBottomSheet"
 
 private const val EXPERIMENTAL_ANIMATION_API_SIMPLE_NAME = "ExperimentalAnimationApi"
 private const val EXPERIMENTAL_ANIMATION_API_QUALIFIED_NAME = "androidx.compose.animation.ExperimentalAnimationApi"

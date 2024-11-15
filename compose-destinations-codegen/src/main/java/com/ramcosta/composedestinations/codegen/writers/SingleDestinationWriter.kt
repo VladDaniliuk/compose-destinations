@@ -245,6 +245,8 @@ internal class SingleDestinationWriter(
 
             is DestinationStyleType.BottomSheet -> destinationStyleBottomSheet()
 
+            is DestinationStyleType.BlockedBottomSheet -> destinationStyleBlockedBottomSheet()
+
             is DestinationStyleType.Animated -> destinationStyleAnimated(destination.destinationStyleType)
 
             is DestinationStyleType.Dialog -> destinationStyleDialog(destination.destinationStyleType)
@@ -275,6 +277,14 @@ internal class SingleDestinationWriter(
         }
 
         return "\n\toverride val style: DestinationStyle = ${DestinationStyleType.BottomSheet.code(importableHelper)}\n"
+    }
+
+    private fun destinationStyleBlockedBottomSheet(): String {
+        if (!codeGenConfig.isBottomSheetDependencyPresent) {
+            throw MissingRequiredDependency("You need to include '$BOTTOM_SHEET_DEPENDENCY' to use $CORE_BOTTOM_SHEET_DESTINATION_STYLE!")
+        }
+
+        return "\n\toverride val style: DestinationStyle = ${DestinationStyleType.BlockedBottomSheet.code(importableHelper)}\n"
     }
 
     private fun Importable.getCodePlaceHolder(): String {
