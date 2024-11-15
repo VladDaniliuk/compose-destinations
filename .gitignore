@@ -10,3 +10,4 @@ local.properties
 /secring.gpg
 /playground/docs/*NavGraph.html
 /.idea
+/.kotlin/
