@@ -4,8 +4,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-apply(from = "${rootProject.projectDir}/publish.gradle")
-
 android {
 
     namespace = "com.ramcosta.composedestinations.bottomsheet"
