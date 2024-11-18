@@ -20,5 +20,5 @@ dependencies {
 
     implementation(libs.pprint)
     implementation(libs.ksp.api)
-    implementation(libs.test.junit)
+    implementation(libs.junit)
 }

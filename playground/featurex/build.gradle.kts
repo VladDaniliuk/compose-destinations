@@ -9,11 +9,10 @@ plugins {
 android {
 
     namespace = "com.ramcosta.playground.featurex"
-    compileSdk = libs.versions.compileSdk.get().toIntOrNull()
+    compileSdk = libs.versions.sdk.compile.get().toIntOrNull()
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toIntOrNull()
-        targetSdk = libs.versions.targetSdk.get().toIntOrNull()
+        minSdk = libs.versions.sdk.min.get().toIntOrNull()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles.add(File("consumer-rules.pro"))
@@ -52,7 +51,7 @@ kotlin {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+    compilerOptions.freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
 }
 
 dependencies {
@@ -60,21 +59,19 @@ dependencies {
     implementation(project(mapOf("path" to ":compose-destinations")))
     ksp(project(":compose-destinations-ksp"))
 
-    implementation(libs.androidMaterial)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.lifecycle.viewmodel.compose)
 
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.viewModel)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
 
-    implementation(libs.androidx.lifecycleRuntimeKtx)
-    implementation(libs.androidx.activityCompose)
+    implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.ktxSerializationJson)
-
-    testImplementation(libs.test.junit)
-    testImplementation(libs.test.mockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
 
     testImplementation(project(":compose-destinations-ksp"))
-    testImplementation(libs.test.kotlinCompile)
-    testImplementation(libs.test.kotlinCompileKsp)
+    testImplementation(libs.kotlin.compile.testing)
+    testImplementation(libs.kotlin.compile.testing.ksp)
 }

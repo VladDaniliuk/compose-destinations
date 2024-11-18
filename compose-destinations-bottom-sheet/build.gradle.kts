@@ -7,10 +7,10 @@ plugins {
 android {
 
     namespace = "com.ramcosta.composedestinations.bottomsheet"
-    compileSdk = libs.versions.compileSdk.get().toIntOrNull()
+    compileSdk = libs.versions.sdk.compile.get().toIntOrNull()
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toIntOrNull()
+        minSdk = libs.versions.sdk.min.get().toIntOrNull()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles.add(File("consumer-rules.pro"))
@@ -50,6 +50,6 @@ dependencies {
 
     implementation(project(mapOf("path" to ":compose-destinations")))
 
-    api(libs.compose.material.navigation)
-    api(libs.compose.material)
+    api(libs.material.navigation)
+    api(libs.androidx.material)
 }

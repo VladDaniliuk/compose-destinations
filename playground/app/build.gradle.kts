@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.ramcosta.samples.playground"
-    compileSdk = libs.versions.compileSdk.get().toIntOrNull()
+    compileSdk = libs.versions.sdk.compile.get().toIntOrNull()
 
     defaultConfig {
         applicationId = "com.ramcosta.samples.playground"
-        minSdk = libs.versions.minSdk.get().toIntOrNull()
-        targetSdk = libs.versions.targetSdk.get().toIntOrNull()
+        minSdk = libs.versions.sdk.min.get().toIntOrNull()
+        targetSdk = libs.versions.sdk.target.get().toIntOrNull()
         versionCode = 1
         versionName = "1.0"
 
@@ -82,25 +82,23 @@ dependencies {
     implementation(project(mapOf("path" to ":playground:featurez")))
     ksp(project(":compose-destinations-ksp"))
 
-    debugImplementation("androidx.compose.ui:ui-tooling:1.6.2")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.2")
+    debugImplementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.ui.tooling.preview)
 
-    implementation(libs.androidMaterial)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.icons)
+    implementation(libs.lifecycle.viewmodel.compose)
 
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.material.icons)
-    implementation(libs.compose.viewModel)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
 
-    implementation(libs.androidx.lifecycleRuntimeKtx)
-    implementation(libs.androidx.activityCompose)
+    implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.ktxSerializationJson)
-
-    testImplementation(libs.test.junit)
-    testImplementation(libs.test.mockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
 
     testImplementation(project(":compose-destinations-ksp"))
-    testImplementation(libs.test.kotlinCompile)
-    testImplementation(libs.test.kotlinCompileKsp)
+    testImplementation(libs.kotlin.compile.testing)
+    testImplementation(libs.kotlin.compile.testing.ksp)
 }

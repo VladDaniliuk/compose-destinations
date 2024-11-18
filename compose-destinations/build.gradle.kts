@@ -7,11 +7,10 @@ plugins {
 android {
 
     namespace = "com.ramcosta.composedestinations"
-    compileSdk = libs.versions.compileSdk.get().toIntOrNull()
+    compileSdk = libs.versions.sdk.compile.get().toIntOrNull()
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toIntOrNull()
-        targetSdk = libs.versions.targetSdk.get().toIntOrNull()
+        minSdk = libs.versions.sdk.min.get().toIntOrNull()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles.add(File("consumer-rules.pro"))
@@ -52,5 +51,5 @@ kotlin {
 }
 
 dependencies {
-    api(libs.compose.navigation)
+    api(libs.material.navigation)
 }

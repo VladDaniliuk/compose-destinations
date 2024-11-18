@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.ramcosta.destinations.sample"
-    compileSdk = libs.versions.compileSdk.get().toIntOrNull()
+    compileSdk = libs.versions.sdk.compile.get().toIntOrNull()
 
     defaultConfig {
         applicationId = "com.ramcosta.destinations.sample"
-        minSdk = libs.versions.minSdk.get().toIntOrNull()
-        targetSdk = libs.versions.targetSdk.get().toIntOrNull()
+        minSdk = libs.versions.sdk.min.get().toIntOrNull()
+        targetSdk = libs.versions.sdk.target.get().toIntOrNull()
         versionCode = 1
         versionName = "1.0"
 
@@ -59,13 +59,11 @@ dependencies {
     implementation(project(mapOf("path" to ":compose-destinations-bottom-sheet")))
     ksp(project(":compose-destinations-ksp"))
 
-    implementation(libs.androidMaterial)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.icons)
+    implementation(libs.lifecycle.viewmodel.compose)
 
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.material.icons)
-    implementation(libs.compose.viewModel)
-
-    implementation(libs.androidx.lifecycleRuntimeKtx)
-    implementation(libs.androidx.activityCompose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
 }
